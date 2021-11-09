@@ -1,5 +1,7 @@
 package com.khauminhduy.domain;
 
+import java.util.Objects;
+
 public class Address {
 
 	private String city;
@@ -37,6 +39,24 @@ public class Address {
 
 	public void setPostcode(String postcode) {
 		this.postcode = postcode;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(city, postcode, state);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Address other = (Address) obj;
+		return Objects.equals(city, other.city) && Objects.equals(postcode, other.postcode)
+				&& Objects.equals(state, other.state);
 	}
 
 }
